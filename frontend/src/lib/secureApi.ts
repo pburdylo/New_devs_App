@@ -1468,6 +1468,16 @@ export class SecureAPIClient {
     return this.request<any>(`/api/v1/dashboard/summary?${queryParams}`, requestOptions);
   }
 
+  async getDashboardProperties(options?: { timestamp?: number }) {
+    const queryParams = new URLSearchParams({ });
+    if (options?.timestamp) {
+      queryParams.append('_t', options.timestamp.toString());
+    }
+
+    const requestOptions: RequestInit = {};
+    return this.request<any>(`/api/v1/dashboard/properties?${queryParams}`, requestOptions);
+  }
+
   async uploadCompanyLogo(logo_url: string) {
     return this.request<any>('/api/v1/company-settings/logo', {
       method: 'POST',
